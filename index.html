@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEIS – AI Election Intelligence System | Interactive Election Education</title>
+    <meta name="description" content="AEIS is an advanced multi-agent AI system providing intelligent, interactive, and personalized election education through 4 specialized AI agents.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <div class="loader-ring"></div>
+                <span class="loader-icon">🗳️</span>
+            </div>
+            <h2 class="loader-title">AEIS</h2>
+            <p class="loader-subtitle">AI Election Intelligence System</p>
+            <div class="loader-bar">
+                <div class="loader-bar-fill"></div>
+            </div>
+            <p class="loader-status">Initializing AI Agents...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="main-nav" class="main-nav">
+        <div class="nav-brand">
+            <span class="nav-logo">🗳️</span>
+            <span class="nav-title">AEIS</span>
+            <span class="nav-badge">v2.0</span>
+        </div>
+        <div class="nav-links">
+            <button class="nav-link active" data-section="home" id="nav-home">
+                <span class="nav-link-icon">🏠</span>
+                <span>Home</span>
+            </button>
+            <button class="nav-link" data-section="educator" id="nav-educator">
+                <span class="nav-link-icon">🟢</span>
+                <span>Educator</span>
+            </button>
+            <button class="nav-link" data-section="detector" id="nav-detector">
+                <span class="nav-link-icon">🔵</span>
+                <span>Detector</span>
+            </button>
+            <button class="nav-link" data-section="simulator" id="nav-simulator">
+                <span class="nav-link-icon">🟡</span>
+                <span>Simulator</span>
+            </button>
+            <button class="nav-link" data-section="mentor" id="nav-mentor">
+                <span class="nav-link-icon">🔴</span>
+                <span>Mentor</span>
+            </button>
+        </div>
+        <div class="nav-user">
+            <div class="user-xp">
+                <span class="xp-label">XP</span>
+                <div class="xp-bar">
+                    <div class="xp-fill" id="nav-xp-fill" style="width: 0%"></div>
+                </div>
+                <span class="xp-value" id="nav-xp-value">0</span>
+            </div>
+            <div class="user-level" id="nav-user-level">Lv 1</div>
+            <button class="nav-logout-btn" id="btn-logout" onclick="handleLogout()" title="Sign Out">🚪</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- ==================== HOME SECTION ==================== -->
+        <section id="section-home" class="section section-home active">
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge">🤖 Multi-Agent AI System</div>
+                    <h1 class="hero-title">
+                        <span class="hero-line">AI Election</span>
+                        <span class="hero-line gradient-text">Intelligence System</span>
+                    </h1>
+                    <p class="hero-description">
+                        Experience the future of civic education. Four specialized AI agents work together to educate, detect misinformation, simulate elections, and mentor your learning journey — all powered by advanced AI.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-glow" id="btn-get-started" onclick="navigateTo('educator')">
+                            <span>Get Started</span>
+                            <span class="btn-arrow">→</span>
+                        </button>
+                        <button class="btn btn-secondary" id="btn-explore" onclick="navigateTo('simulator')">
+                            <span>Try Simulator</span>
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="4">0</span>
+                            <span class="stat-label">AI Agents</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="50">0</span>
+                            <span class="stat-label">Topics</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="100">0</span>
+                            <span class="stat-label">Quizzes</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="10">0</span>
+                            <span class="stat-label">Simulations</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agent Cards -->
+            <div class="agent-cards-grid">
+                <div class="agent-card agent-green" onclick="navigateTo('educator')" id="card-educator">
+                    <div class="agent-card-glow"></div>
+                    <div class="agent-card-header">
+                        <div class="agent-icon">🎓</div>
+                        <span class="agent-tag">Agent 1</span>
+                    </div>
+                    <h3 class="agent-card-title">Civic Educator AI</h3>
+                    <p class="agent-card-desc">Learn the election process step-by-step with interactive lessons, real-world examples, and quizzes tailored to your level.</p>
+                    <div class="agent-card-features">
+                        <span class="feature-tag">📚 Lessons</span>
+                        <span class="feature-tag">❓ Quizzes</span>
+                        <span class="feature-tag">📊 Adaptive</span>
+                    </div>
+                    <div class="agent-card-action">
+                        <span>Start Learning</span>
+                        <span class="arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="agent-card agent-blue" onclick="navigateTo('detector')" id="card-detector">
+                    <div class="agent-card-glow"></div>
+                    <div class="agent-card-header">
+                        <div class="agent-icon">🔍</div>
+                        <span class="agent-tag">Agent 2</span>
+                    </div>
+                    <h3 class="agent-card-title">Misinfo Detector AI</h3>
+                    <p class="agent-card-desc">Analyze news, social posts, and claims. Get instant verdicts on misinformation with clear explanations.</p>
+                    <div class="agent-card-features">
+                        <span class="feature-tag">🔎 Analyze</span>
+                        <span class="feature-tag">⚠️ Detect</span>
+                        <span class="feature-tag">💡 Explain</span>
+                    </div>
+                    <div class="agent-card-action">
+                        <span>Check Facts</span>
+                        <span class="arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="agent-card agent-yellow" onclick="navigateTo('simulator')" id="card-simulator">
+                    <div class="agent-card-glow"></div>
+                    <div class="agent-card-header">
+                        <div class="agent-icon">🎮</div>
+                        <span class="agent-tag">Agent 3</span>
+                    </div>
+                    <h3 class="agent-card-title">Election Simulator AI</h3>
+                    <p class="agent-card-desc">Experience elections hands-on! Simulate voting, campaigns, and counting with gamified scenarios.</p>
+                    <div class="agent-card-features">
+                        <span class="feature-tag">🗳️ Vote</span>
+                        <span class="feature-tag">📢 Campaign</span>
+                        <span class="feature-tag">📈 Results</span>
+                    </div>
+                    <div class="agent-card-action">
+                        <span>Simulate</span>
+                        <span class="arrow">→</span>
+                    </div>
+                </div>
+
+                <div class="agent-card agent-red" onclick="navigateTo('mentor')" id="card-mentor">
+                    <div class="agent-card-glow"></div>
+                    <div class="agent-card-header">
+                        <div class="agent-icon">🧠</div>
+                        <span class="agent-tag">Agent 4</span>
+                    </div>
+                    <h3 class="agent-card-title">Personal Mentor AI</h3>
+                    <p class="agent-card-desc">Your AI coach tracks progress, identifies gaps, and creates personalized learning paths just for you.</p>
+                    <div class="agent-card-features">
+                        <span class="feature-tag">📊 Track</span>
+                        <span class="feature-tag">🎯 Goals</span>
+                        <span class="feature-tag">💪 Coach</span>
+                    </div>
+                    <div class="agent-card-action">
+                        <span>View Progress</span>
+                        <span class="arrow">→</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How it Works -->
+            <div class="how-it-works">
+                <h2 class="section-title">How <span class="gradient-text">AEIS</span> Works</h2>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="flow-step-num">01</div>
+                        <h4>Understand Intent</h4>
+                        <p>System analyzes what you want to learn</p>
+                    </div>
+                    <div class="flow-connector">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-num">02</div>
+                        <h4>Activate Agent</h4>
+                        <p>The most relevant AI agent is activated</p>
+                    </div>
+                    <div class="flow-connector">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-num">03</div>
+                        <h4>Engage & Learn</h4>
+                        <p>Interactive, structured response delivered</p>
+                    </div>
+                    <div class="flow-connector">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-num">04</div>
+                        <h4>Track Progress</h4>
+                        <p>Your learning journey is tracked & optimized</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== EDUCATOR SECTION ==================== -->
+        <section id="section-educator" class="section section-educator">
+            <div class="section-header">
+                <div class="section-agent-badge agent-badge-green">
+                    <span class="badge-icon">🎓</span>
+                    <span>Civic Educator AI</span>
+                    <span class="badge-status">● Active</span>
+                </div>
+                <h2 class="section-title">Learn the <span class="gradient-text-green">Election Process</span></h2>
+                <p class="section-subtitle">Select a topic to begin your interactive learning journey</p>
+            </div>
+
+            <!-- Difficulty Selector -->
+            <div class="difficulty-selector" id="difficulty-selector">
+                <button class="diff-btn active" data-level="beginner" id="diff-beginner">
+                    <span class="diff-icon">🌱</span>
+                    <span>Beginner</span>
+                </button>
+                <button class="diff-btn" data-level="intermediate" id="diff-intermediate">
+                    <span class="diff-icon">🌿</span>
+                    <span>Intermediate</span>
+                </button>
+                <button class="diff-btn" data-level="advanced" id="diff-advanced">
+                    <span class="diff-icon">🌳</span>
+                    <span>Advanced</span>
+                </button>
+            </div>
+
+            <!-- Topic Grid -->
+            <div class="topic-grid" id="topic-grid">
+                <!-- Topics will be dynamically generated -->
+            </div>
+
+            <!-- Lesson View (hidden by default) -->
+            <div class="lesson-view" id="lesson-view" style="display:none;">
+                <button class="back-btn" id="btn-back-to-topics" onclick="showTopics()">
+                    ← Back to Topics
+                </button>
+                <div class="lesson-container">
+                    <div class="lesson-header">
+                        <div class="lesson-progress-bar">
+                            <div class="lesson-progress-fill" id="lesson-progress-fill"></div>
+                        </div>
+                        <span class="lesson-step-label" id="lesson-step-label">Step 1 of 5</span>
+                    </div>
+                    <div class="lesson-content" id="lesson-content">
+                        <!-- Dynamic lesson content -->
+                    </div>
+                    <div class="lesson-actions">
+                        <button class="btn btn-secondary" id="btn-lesson-prev" onclick="prevLessonStep()">← Previous</button>
+                        <button class="btn btn-primary" id="btn-lesson-next" onclick="nextLessonStep()">Next →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz View (hidden by default) -->
+            <div class="quiz-view" id="quiz-view" style="display:none;">
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <div class="quiz-info">
+                            <span class="quiz-title" id="quiz-title">Quiz</span>
+                            <span class="quiz-question-count" id="quiz-question-count">Question 1/5</span>
+                        </div>
+                        <div class="quiz-timer" id="quiz-timer">
+                            <span class="timer-icon">⏱️</span>
+                            <span class="timer-value" id="timer-value">30</span>
+                        </div>
+                    </div>
+                    <div class="quiz-question" id="quiz-question"></div>
+                    <div class="quiz-options" id="quiz-options"></div>
+                    <div class="quiz-feedback" id="quiz-feedback" style="display:none;"></div>
+                    <button class="btn btn-primary quiz-next-btn" id="btn-quiz-next" onclick="nextQuizQuestion()" style="display:none;">Next Question →</button>
+                </div>
+            </div>
+
+            <!-- Quiz Results (hidden by default) -->
+            <div class="quiz-results" id="quiz-results" style="display:none;">
+                <div class="results-container">
+                    <div class="results-icon" id="results-icon">🏆</div>
+                    <h2 class="results-title" id="results-title">Great Job!</h2>
+                    <div class="results-score">
+                        <div class="score-circle">
+                            <svg viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" class="score-bg"/>
+                                <circle cx="50" cy="50" r="45" class="score-fill" id="score-circle-fill"/>
+                            </svg>
+                            <span class="score-text" id="score-text">0%</span>
+                        </div>
+                    </div>
+                    <div class="results-stats" id="results-stats"></div>
+                    <div class="results-xp" id="results-xp"></div>
+                    <div class="results-actions">
+                        <button class="btn btn-secondary" onclick="showTopics()">Back to Topics</button>
+                        <button class="btn btn-primary" onclick="retakeQuiz()">Retake Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== DETECTOR SECTION ==================== -->
+        <section id="section-detector" class="section section-detector">
+            <div class="section-header">
+                <div class="section-agent-badge agent-badge-blue">
+                    <span class="badge-icon">🔍</span>
+                    <span>Misinformation Detector AI</span>
+                    <span class="badge-status">● Active</span>
+                </div>
+                <h2 class="section-title">Detect <span class="gradient-text-blue">Misinformation</span></h2>
+                <p class="section-subtitle">Paste any election-related claim, news headline, or social media post to analyze</p>
+            </div>
+
+            <div class="detector-layout">
+                <div class="detector-input-area">
+                    <div class="input-card glass-card">
+                        <h3 class="input-card-title">📝 Enter Content to Analyze</h3>
+                        <textarea class="detector-textarea" id="detector-input" placeholder="Paste a news headline, social media post, or any election-related claim here...
+
+Example: 'EVMs can be hacked remotely using Bluetooth technology to change election results.'"></textarea>
+                        <div class="detector-examples">
+                            <span class="example-label">Try examples:</span>
+                            <button class="example-btn" id="example-1" onclick="loadExample(0)">EVM Hacking</button>
+                            <button class="example-btn" id="example-2" onclick="loadExample(1)">Voter Fraud</button>
+                            <button class="example-btn" id="example-3" onclick="loadExample(2)">Fake Promises</button>
+                            <button class="example-btn" id="example-4" onclick="loadExample(3)">Nomination Rules</button>
+                        </div>
+                        <button class="btn btn-primary btn-analyze" id="btn-analyze" onclick="analyzeContent()">
+                            <span class="analyze-icon">🔬</span>
+                            <span>Analyze Content</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="detector-result-area" id="detector-result-area" style="display:none;">
+                    <div class="result-card glass-card">
+                        <div class="result-header">
+                            <div class="verdict-badge" id="verdict-badge"></div>
+                            <div class="confidence-meter">
+                                <span class="confidence-label">Confidence</span>
+                                <div class="confidence-bar">
+                                    <div class="confidence-fill" id="confidence-fill"></div>
+                                </div>
+                                <span class="confidence-value" id="confidence-value">0%</span>
+                            </div>
+                        </div>
+                        <div class="result-analysis" id="result-analysis"></div>
+                        <div class="result-flags" id="result-flags"></div>
+                        <div class="result-explanation" id="result-explanation"></div>
+                        <div class="result-sources" id="result-sources"></div>
+                    </div>
+                </div>
+
+                <!-- Analysis History -->
+                <div class="analysis-history" id="analysis-history">
+                    <h3 class="history-title">📋 Recent Analyses</h3>
+                    <div class="history-list" id="history-list">
+                        <div class="history-empty">No analyses yet. Try checking a claim above!</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SIMULATOR SECTION ==================== -->
+        <section id="section-simulator" class="section section-simulator">
+            <div class="section-header">
+                <div class="section-agent-badge agent-badge-yellow">
+                    <span class="badge-icon">🎮</span>
+                    <span>Election Simulator AI</span>
+                    <span class="badge-status">● Active</span>
+                </div>
+                <h2 class="section-title">Experience <span class="gradient-text-yellow">Elections</span></h2>
+                <p class="section-subtitle">Choose a simulation to experience the election process firsthand</p>
+            </div>
+
+            <!-- Simulation Selection -->
+            <div class="sim-selection" id="sim-selection">
+                <div class="sim-card" onclick="startSimulation('voting')" id="sim-voting">
+                    <div class="sim-card-visual">
+                        <div class="sim-icon-large">🗳️</div>
+                        <div class="sim-particles"></div>
+                    </div>
+                    <h3>Voting Simulation</h3>
+                    <p>Experience the complete voting process — from arriving at the booth to casting your vote</p>
+                    <div class="sim-meta">
+                        <span class="sim-duration">⏱️ ~5 min</span>
+                        <span class="sim-difficulty">🌱 Beginner</span>
+                    </div>
+                    <div class="sim-card-action">Start Simulation →</div>
+                </div>
+
+                <div class="sim-card" onclick="startSimulation('campaign')" id="sim-campaign">
+                    <div class="sim-card-visual">
+                        <div class="sim-icon-large">📢</div>
+                        <div class="sim-particles"></div>
+                    </div>
+                    <h3>Campaign Strategy</h3>
+                    <p>Run your own election campaign — make strategic decisions and see the outcome</p>
+                    <div class="sim-meta">
+                        <span class="sim-duration">⏱️ ~8 min</span>
+                        <span class="sim-difficulty">🌿 Intermediate</span>
+                    </div>
+                    <div class="sim-card-action">Start Simulation →</div>
+                </div>
+
+                <div class="sim-card" onclick="startSimulation('counting')" id="sim-counting">
+                    <div class="sim-card-visual">
+                        <div class="sim-icon-large">📊</div>
+                        <div class="sim-particles"></div>
+                    </div>
+                    <h3>Vote Counting</h3>
+                    <p>Oversee the counting process — understand how results are tallied and verified</p>
+                    <div class="sim-meta">
+                        <span class="sim-duration">⏱️ ~6 min</span>
+                        <span class="sim-difficulty">🌿 Intermediate</span>
+                    </div>
+                    <div class="sim-card-action">Start Simulation →</div>
+                </div>
+
+                <div class="sim-card" onclick="startSimulation('fullElection')" id="sim-full">
+                    <div class="sim-card-visual">
+                        <div class="sim-icon-large">🏛️</div>
+                        <div class="sim-particles"></div>
+                    </div>
+                    <h3>Full Election</h3>
+                    <p>Experience a complete Lok Sabha election cycle — from nomination to results</p>
+                    <div class="sim-meta">
+                        <span class="sim-duration">⏱️ ~15 min</span>
+                        <span class="sim-difficulty">🌳 Advanced</span>
+                    </div>
+                    <div class="sim-card-action">Start Simulation →</div>
+                </div>
+            </div>
+
+            <!-- Simulation Play Area (hidden by default) -->
+            <div class="sim-play-area" id="sim-play-area" style="display:none;">
+                <button class="back-btn" id="btn-back-to-sims" onclick="showSimSelection()">
+                    ← Back to Simulations
+                </button>
+                <div class="sim-game-container">
+                    <div class="sim-game-header">
+                        <h3 class="sim-game-title" id="sim-game-title">Voting Simulation</h3>
+                        <div class="sim-game-progress">
+                            <div class="sim-progress-bar">
+                                <div class="sim-progress-fill" id="sim-progress-fill"></div>
+                            </div>
+                            <span class="sim-step-label" id="sim-step-label">Step 1</span>
+                        </div>
+                    </div>
+                    <div class="sim-game-content" id="sim-game-content">
+                        <!-- Dynamic simulation content -->
+                    </div>
+                    <div class="sim-game-actions" id="sim-game-actions">
+                        <!-- Dynamic action buttons -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulation Complete (hidden by default) -->
+            <div class="sim-complete" id="sim-complete" style="display:none;">
+                <div class="sim-complete-content">
+                    <div class="sim-trophy">🏆</div>
+                    <h2>Simulation Complete!</h2>
+                    <p class="sim-complete-msg" id="sim-complete-msg"></p>
+                    <div class="sim-complete-stats" id="sim-complete-stats"></div>
+                    <div class="sim-complete-lessons" id="sim-complete-lessons"></div>
+                    <div class="sim-complete-actions">
+                        <button class="btn btn-secondary" onclick="showSimSelection()">Try Another</button>
+                        <button class="btn btn-primary" onclick="navigateTo('mentor')">View Progress</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== MENTOR SECTION ==================== -->
+        <section id="section-mentor" class="section section-mentor">
+            <div class="section-header">
+                <div class="section-agent-badge agent-badge-red">
+                    <span class="badge-icon">🧠</span>
+                    <span>Personalized Mentor AI</span>
+                    <span class="badge-status">● Active</span>
+                </div>
+                <h2 class="section-title">Your <span class="gradient-text-red">Learning Journey</span></h2>
+                <p class="section-subtitle">Track your progress, discover strengths, and unlock new achievements</p>
+            </div>
+
+            <div class="mentor-layout">
+                <!-- Profile Card -->
+                <div class="mentor-profile glass-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar" id="profile-avatar">
+                            <span class="avatar-icon">🎓</span>
+                            <div class="avatar-ring"></div>
+                        </div>
+                        <div class="profile-info">
+                            <h3 class="profile-name" id="profile-name">Learner</h3>
+                            <div class="profile-level">
+                                <span class="level-badge" id="profile-level-badge">Level 1</span>
+                                <span class="level-title" id="profile-level-title">Election Novice</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-xp-section">
+                        <div class="profile-xp-bar">
+                            <div class="profile-xp-fill" id="profile-xp-fill"></div>
+                        </div>
+                        <div class="profile-xp-info">
+                            <span id="profile-xp-current">0 XP</span>
+                            <span id="profile-xp-next">Next: 100 XP</span>
+                        </div>
+                    </div>
+                    <div class="profile-stats-grid">
+                        <div class="profile-stat">
+                            <span class="profile-stat-value" id="stat-topics">0</span>
+                            <span class="profile-stat-label">Topics Done</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="profile-stat-value" id="stat-quizzes">0</span>
+                            <span class="profile-stat-label">Quizzes Passed</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="profile-stat-value" id="stat-sims">0</span>
+                            <span class="profile-stat-label">Simulations</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="profile-stat-value" id="stat-streak">0</span>
+                            <span class="profile-stat-label">Day Streak 🔥</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Goals -->
+                <div class="mentor-goals glass-card">
+                    <h3 class="card-title">🎯 Today's Goals</h3>
+                    <div class="goals-list" id="goals-list">
+                        <!-- Dynamic goals -->
+                    </div>
+                    <div class="goals-summary">
+                        <span class="goals-done" id="goals-done">0/3 completed</span>
+                    </div>
+                </div>
+
+                <!-- Skill Radar -->
+                <div class="mentor-skills glass-card">
+                    <h3 class="card-title">📊 Skill Assessment</h3>
+                    <div class="skills-chart" id="skills-chart">
+                        <canvas id="skills-canvas" width="300" height="300"></canvas>
+                    </div>
+                    <div class="skills-legend" id="skills-legend"></div>
+                </div>
+
+                <!-- Achievements -->
+                <div class="mentor-achievements glass-card">
+                    <h3 class="card-title">🏅 Achievements</h3>
+                    <div class="achievements-grid" id="achievements-grid">
+                        <!-- Dynamic achievements -->
+                    </div>
+                </div>
+
+                <!-- Learning Path -->
+                <div class="mentor-path glass-card">
+                    <h3 class="card-title">🗺️ Recommended Path</h3>
+                    <div class="learning-path" id="learning-path">
+                        <!-- Dynamic path -->
+                    </div>
+                </div>
+
+                <!-- Mentor Tips -->
+                <div class="mentor-tips glass-card">
+                    <h3 class="card-title">💡 Mentor's Tips</h3>
+                    <div class="tips-content" id="tips-content">
+                        <!-- Dynamic tips -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Auth Modal -->
+    <div class="auth-overlay" id="auth-overlay">
+        <div class="auth-modal">
+            <div class="auth-header">
+                <span class="auth-logo">🗳️</span>
+                <h2 class="auth-title">Welcome to <span class="gradient-text">AEIS</span></h2>
+                <p class="auth-subtitle">AI Election Intelligence System</p>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-form" id="login-form">
+                <h3 class="auth-form-title">Sign In</h3>
+                <div class="auth-field">
+                    <label for="login-username">👤 Username</label>
+                    <input type="text" id="login-username" placeholder="Enter your username" autocomplete="username">
+                </div>
+                <div class="auth-field">
+                    <label for="login-password">🔒 Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" autocomplete="current-password">
+                </div>
+                <div class="auth-error" id="login-error"></div>
+                <button class="btn btn-primary auth-submit" id="btn-login" onclick="handleLogin()">
+                    Sign In →
+                </button>
+                <p class="auth-switch">Don't have an account? <button onclick="showSignup()" id="btn-show-signup">Create one</button></p>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="auth-form" id="signup-form" style="display:none;">
+                <h3 class="auth-form-title">Create Account</h3>
+                <div class="auth-field">
+                    <label for="signup-name">😊 Display Name</label>
+                    <input type="text" id="signup-name" placeholder="Enter your name" autocomplete="name">
+                </div>
+                <div class="auth-field">
+                    <label for="signup-username">👤 Username</label>
+                    <input type="text" id="signup-username" placeholder="Choose a username" autocomplete="username">
+                </div>
+                <div class="auth-field">
+                    <label for="signup-password">🔒 Password</label>
+                    <input type="password" id="signup-password" placeholder="Create a password (min 4 chars)" autocomplete="new-password">
+                </div>
+                <div class="auth-field">
+                    <label for="signup-confirm">🔒 Confirm Password</label>
+                    <input type="password" id="signup-confirm" placeholder="Confirm your password" autocomplete="new-password">
+                </div>
+                <div class="auth-error" id="signup-error"></div>
+                <button class="btn btn-primary auth-submit" id="btn-signup" onclick="handleSignup()">
+                    Create Account →
+                </button>
+                <p class="auth-switch">Already have an account? <button onclick="showLogin()" id="btn-show-login">Sign in</button></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
